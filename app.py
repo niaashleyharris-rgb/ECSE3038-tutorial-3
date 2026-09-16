@@ -28,3 +28,7 @@ print(f"Hottest Device: {hottest(readings)['name']}, Temperature: {hottest(readi
 def get_devices():
     return readings
 
+#write a request with path GET /devices/hottest that returns the device with the highest temperature
+@app.get("/devices/hottest")
+def get_hottest_device():
+    return hottest(readings)
