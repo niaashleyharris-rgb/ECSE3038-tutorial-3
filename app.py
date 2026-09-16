@@ -22,3 +22,9 @@ def hottest(devices):
     return max(devices, key=lambda device: device['temp'])
 
 print(f"Hottest Device: {hottest(readings)['name']}, Temperature: {hottest(readings)['temp']}") 
+
+#write a get request with path GET /devices that returns the list of devices
+@app.get("/devices")
+def get_devices():
+    return readings
+
