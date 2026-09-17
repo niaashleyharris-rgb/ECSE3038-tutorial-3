@@ -46,3 +46,8 @@ async def get_reading_by_name(name: str): #the str is forcing python to expect a
             return reading
             #we are raising an excpetion if we expect the user insert something off
     raise HTTPException(status_code=404, detail="Reading not found")
+
+#write a request with path GET /stats that returns the average temperature of every device
+@app.get("/stats")
+def get_average_temperature():
+    return {"average_temperature": average_temp(readings)}
