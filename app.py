@@ -51,3 +51,11 @@ async def get_reading_by_name(name: str): #the str is forcing python to expect a
 @app.get("/stats")
 def get_average_temperature():
     return {"average_temperature": average_temp(readings)}
+
+
+#write a request with path POST /devices that returns The new device, with status 201 
+@app.post("/devices", status_code=201)
+async def post_reading(reading: dict):
+    readings.append(reading)
+    return reading
+    #return code that ensures a 201 is returned to the client upon success 
