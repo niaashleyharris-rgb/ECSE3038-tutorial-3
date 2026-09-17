@@ -59,3 +59,11 @@ async def post_reading(reading: dict):
     readings.append(reading)
     return reading
     #return code that ensures a 201 is returned to the client upon success 
+
+#write a request with path Stretch. GET /rooms/{room}/devices that returns Every device in that room, in full, or a 404
+@app.get("/rooms/{room}/devices")
+async def get_devices_in_room(room:str):
+    room_devices = [device for device in readings if device['room'] == room]
+    if not room_devices:
+        raise HTTPException(status_code=404, detail="No devices found in this room")
+    return room_devices
