@@ -37,3 +37,12 @@ def get_hottest_device():
 @app.get("/devices/online")
 def get_online_devices():
     return [device for device in readings if device['online']]
+
+#write a request with path GET /devices/{name} that returns One device, or a 404
+@app.get("/devices/{name}")
+async def get_reading_by_name(name: str): #the str is forcing python to expect a string for the name parameter
+    for reading in readings:
+        if reading["name"] == name:
+            return reading
+            #we are raising an excpetion if we expect the user insert something off
+    raise HTTPException(status_code=404, detail="Reading not found")
