@@ -32,3 +32,8 @@ def get_devices():
 @app.get("/devices/hottest")
 def get_hottest_device():
     return hottest(readings)
+
+#write a request with path GET /devices/online that returns only the devices whose online is true
+@app.get("/devices/online")
+def get_online_devices():
+    return [device for device in readings if device['online']]
